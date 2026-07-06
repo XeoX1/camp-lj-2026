@@ -22,7 +22,7 @@ jobs:
       - name: Assemble site (uniquement les fichiers publics)
         run: |
           mkdir -p _site
-          cp index.html robots.txt sw.js .nojekyll _site/
+          cp index.html robots.txt sw.js .nojekyll camp-icon.png manifest.webmanifest _site/
       - name: Configure Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact

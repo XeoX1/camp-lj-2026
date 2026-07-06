@@ -1,0 +1,12 @@
+{
+  "name": "Camp L/J 2026",
+  "short_name": "Camp L/J",
+  "start_url": ".",
+  "scope": ".",
+  "display": "standalone",
+  "background_color": "#faf6f1",
+  "theme_color": "#ce6206",
+  "icons": [
+    { "src": "camp-icon.png", "sizes": "512x512", "type": "image/png", "purpose": "any" }
+  ]
+}
