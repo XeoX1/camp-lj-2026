@@ -4,9 +4,14 @@
   "start_url": ".",
   "scope": ".",
   "display": "standalone",
-  "background_color": "#faf6f1",
-  "theme_color": "#ce6206",
+  "background_color": "#f4f6f8",
+  "theme_color": "#003a5d",
   "icons": [
-    { "src": "camp-icon.png", "sizes": "512x512", "type": "image/png", "purpose": "any" }
+    {
+      "src": "camp-icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
   ]
 }
