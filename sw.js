@@ -38,3 +38,33 @@ self.addEventListener('fetch', function (e) {
     })
   );
 });
+
+/* Notifications push (FCM en messages « data-only ») — Camp L/J 2026.
+ * Le serveur (Apps Script) envoie un message data:{title,body,url} ; on affiche la
+ * notification nous-mêmes (aucune config Firebase requise dans ce fichier, aucun secret). */
+self.addEventListener('push', function (e) {
+  var p = {};
+  try { p = e.data ? e.data.json() : {}; } catch (err) { try { p = { data: { body: e.data.text() } }; } catch (e2) {} }
+  var d = p.data || p.notification || p || {};
+  var title = d.title || 'Camp L/J 2026';
+  var opts = {
+    body: d.body || '',
+    icon: './camp-icon.png',
+    badge: './camp-icon.png',
+    tag: d.tag || undefined,
+    renotify: !!d.tag,
+    data: { url: d.url || './' }
+  };
+  e.waitUntil(self.registration.showNotification(title, opts));
+});
+
+self.addEventListener('notificationclick', function (e) {
+  e.notification.close();
+  var url = (e.notification.data && e.notification.data.url) || './';
+  e.waitUntil(
+    self.clients.matchAll({ type: 'window', includeUncontrolled: true }).then(function (list) {
+      for (var i = 0; i < list.length; i++) { if ('focus' in list[i]) return list[i].focus(); }
+      if (self.clients.openWindow) return self.clients.openWindow(url);
+    })
+  );
+});
